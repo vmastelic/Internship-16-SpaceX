@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar";
-import { getCompanySummary } from "../../api/spacex";
+import { getCompanySummary } from "../../api/company";
 
 function Home(){
 
