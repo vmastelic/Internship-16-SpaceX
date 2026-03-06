@@ -4,6 +4,7 @@ import { getLaunches } from "../../api/launches";
 import type { LaunchesResponse } from "../../types/launch";
 import style from "./Launches.module.css";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { useSearchParams } from "react-router";
 
 function Launches() {
 
@@ -12,12 +13,15 @@ function Launches() {
     const [page, setPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(false);
     const [hasPrevPage, setHasPrevPage] = useState(false);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const search = searchParams.get("search") || "";
     
     useEffect(() => {
         const fetchLaunches = async () => {
             try {
                 setLoading(true);
-                const result = await getLaunches(page);
+                const result = await getLaunches({ page, search });
                 setData(result);
                 setHasNextPage(result.hasNextPage);
                 setHasPrevPage(result.hasPrevPage);
@@ -29,9 +33,24 @@ function Launches() {
           };
           
           fetchLaunches();
-      }, [page]);
+      }, [page, search]);
+
+      const updateParam = (key: string, value: string) => {
+          const params = new URLSearchParams(searchParams);
+          if (value) {
+            params.set(key, value);
+          } else {
+            params.delete(key);
+          }
       
-      if (loading)
+          if (key !== "page") {
+            params.set("page", "1");
+          }
+          
+          setSearchParams(params);
+        };
+      
+      if (loading && !data)
         return <LoadingSpinner />;
       
       return (
@@ -39,6 +58,12 @@ function Launches() {
         <div>
           <NavBar />
           <h1>Launches</h1>
+          <input
+            type="text"
+            placeholder="Search launches..."
+            value={search}
+            onChange={(e) => updateParam("search", e.target.value)}
+          />
           <ul style={{listStyle: "none"}}>
             {data?.docs.map((launch) => (
               <li key={launch.id} className={style.launch}>
