@@ -1,6 +1,9 @@
+import NavBar from "../../components/NavBar";
+
 function Ships(){
     return (
         <div>
+            <NavBar/>
             <h1>Ships</h1>
         </div>
     );  
