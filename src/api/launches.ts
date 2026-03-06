@@ -1,6 +1,6 @@
 import type { LaunchesResponse } from "../types/launch";
 
-export const getLaunches = async (): Promise<LaunchesResponse> => {
+export const getLaunches = async (page: number): Promise<LaunchesResponse> => {
     const response = await fetch('https://api.spacexdata.com/v4/launches/query', {
         method: 'POST',
         headers: {
@@ -9,7 +9,7 @@ export const getLaunches = async (): Promise<LaunchesResponse> => {
         body: JSON.stringify({
             query: {},
             options: {
-                page: 1,
+                page,
                 limit: 10,
                 sort: {
                     date_utc: 'desc'
