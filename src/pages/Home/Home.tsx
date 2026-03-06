@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar";
 import { getCompanySummary } from "../../api/company";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Home(){
 
@@ -21,6 +22,8 @@ function Home(){
 
         fetchSummary();
     }, []);
+
+    if (loading) return <LoadingSpinner />;
 
     return(
         <div>

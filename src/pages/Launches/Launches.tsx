@@ -3,6 +3,7 @@ import NavBar from "../../components/NavBar";
 import { getLaunches } from "../../api/launches";
 import type { LaunchesResponse } from "../../types/launch";
 import style from "./Launches.module.css";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Launches() {
 
@@ -15,6 +16,7 @@ function Launches() {
     useEffect(() => {
         const fetchLaunches = async () => {
             try {
+                setLoading(true);
                 const result = await getLaunches(page);
                 setData(result);
                 setHasNextPage(result.hasNextPage);
@@ -29,9 +31,8 @@ function Launches() {
           fetchLaunches();
       }, [page]);
       
-      if (loading) {
-          return <p>Loading...</p>;
-      }
+      if (loading)
+        return <LoadingSpinner />;
       
       return (
         <>
@@ -48,11 +49,11 @@ function Launches() {
           </ul>
         </div>
 
-        <div>
+        <div className={style.paging}>
             <button onClick={() => setPage((prev) => Math.max(prev - 1, 1))} disabled={!hasPrevPage}>
                 Prev
             </button>
-            
+
             <button onClick={() => setPage((prev) => prev + 1)} disabled={!hasNextPage}>
                 Next
             </button>
