@@ -2,8 +2,12 @@ import { useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import style from "./Launches.module.css";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { useSearchParams } from "react-router";
+import { useSearchParams } from "react-router-dom";
 import { useLaunches } from "../../hooks/useLaunches";
+import LaunchList from "../../components/LaunchList/LaunchList";
+import withLoading from "../../hoc/withLoading";
+
+const LaunchListWithLoading = withLoading(LaunchList);
 
 function Launches() {
 
@@ -28,10 +32,7 @@ function Launches() {
           
           setSearchParams(params);
         };
-      
-      if (loading && !data)
-        return <LoadingSpinner />;
-      
+
       return (
         <>
         <div>
@@ -43,14 +44,10 @@ function Launches() {
             value={search}
             onChange={(e) => updateParam("search", e.target.value)}
           />
-          <ul style={{listStyle: "none"}}>
-            {data?.docs.map((launch) => (
-              <li key={launch.id} className={style.launch}>
-                <h3>{launch.name}</h3>
-                <p>Date: {new Date(launch.date_utc).toLocaleDateString()}</p>
-              </li>
-            ))}
-          </ul>
+          <LaunchListWithLoading
+            loading={loading && !data}
+            launches={data?.docs || []}
+          />
         </div>
 
         <div className={style.paging}>
