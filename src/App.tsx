@@ -5,6 +5,7 @@ import Launches from './pages/Launches/Launches'
 import ShipDetails from './pages/ShipDetails/ShipDetails'
 import Ships from './pages/Ships/Ships'
 import LaunchDetails from './pages/LaunchDetails/LaunchDetails'
+import ErrorPage from './pages/ErrorPage/ErrorPage'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/launches/:id'element={<LaunchDetails />}/>
         <Route path='/ships'element={<Ships />}/>
         <Route path='/ships/:id'element={<ShipDetails />}/>
+        <Route path="*" element={<ErrorPage />} />
       </Routes>      
     </>
   )

@@ -36,10 +36,12 @@ function Launches() {
 
       return (
         <>
+        <div className={style.page}>
         <div>
           <NavBar />
           <h1>Launches</h1>
           <input
+            className={style.input}
             type="text"
             placeholder="Search launches..."
             value={search}
@@ -69,7 +71,7 @@ function Launches() {
             <div>Page {page}</div>
         </div>
 
-
+        </div>
         </>
       );
 }

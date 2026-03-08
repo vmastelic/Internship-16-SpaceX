@@ -1,3 +1,9 @@
+.page {
+  padding: 50px 24px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .launch{
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -19,3 +25,13 @@
   color: inherit;
 }
 
+.input {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin: 0 auto 24px;
+  width: 100%;
+  max-width: 320px;
+  display: block;
+}

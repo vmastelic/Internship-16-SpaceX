@@ -36,7 +36,6 @@ function Ships() {
         
         return () => observerRef.current?.disconnect();
     }, [loading, hasMore, ships]);
-
     
     const handleSearchChange = (value: string) => {
         const params = new URLSearchParams(searchParams);
@@ -51,38 +50,46 @@ function Ships() {
     };
     
     return (
-        <div>
+    <div className={style.page}>
       <NavBar />
-      <h1>Ships</h1>
+      <h1 className={style.title}>Ships</h1>
 
       <input
+        className={style.input}
         type="text"
         placeholder="Search ships..."
         value={search}
         onChange={(e) => handleSearchChange(e.target.value)}
         />
 
-      {error && <p>{error}</p>}
+      {error && <p className={style.error}>{error}</p>}
 
-      <div>
+      <div className={style.grid}>
         {ships.map((ship) => (
-            <Link to={`/ships/${ship.id}`} key={ship.id}>
-            <div>
-              {ship.image ? (
-                  <img src={ship.image} alt={ship.name} width={200} />
-                ) : (
-                    <div>No image</div>
-                )}
+            <Link to={`/ships/${ship.id}`} key={ship.id} className={style.card}>
+            {ship.image ? (
+                <img
+                src={ship.image}
+                alt={ship.name}
+                className={style.image}
+                />
+            ) : (
+                <div className={style.noImage}>No image</div>
+            )}
 
+            <div className={style.content}>
               <h3>{ship.name}</h3>
               <p>Type: {ship.type || "Unknown"}</p>
-              <p>{ship.active ? "Active" : "Inactive"}</p>
+              <p className={ship.active ? style.statusActive : style.statusInactive}>
+                {ship.active ? "Active" : "Inactive"}
+              </p>
             </div>
           </Link>
         ))}
       </div>
 
-      {loading && <p>Loading...</p>}
+      {loading && <p className={style.loading}>Loading...</p>}
+      {!hasMore && !loading && <p className={style.endMessage}>No more ships.</p>}
 
       <div ref={lastElementRef} style={{ height: "40px" }} />
     </div>
