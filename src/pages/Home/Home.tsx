@@ -6,6 +6,7 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import style from "./Home.module.css";
 
 function Home() {
+    const [error, setError] = useState("");
     const [summary, setSummary] = useState("");
     const [nextLaunch, setNextLaunch] = useState<NextLaunch | null>(null);
     const [loading, setLoading] = useState(true);
@@ -28,6 +29,7 @@ function Home() {
                 setNextLaunch(nextLaunchData);
             } catch (error) {
                 console.error("Error fetching home data:", error);
+                setError("Failed to fetch home data");
             } finally {
                 setLoading(false);
             }
@@ -63,6 +65,7 @@ function Home() {
     }, [nextLaunch]);
     
     if (loading) return <LoadingSpinner />;
+    if (error) return <p>{error}</p>;
     
     return (
         <div className={style.home}>

@@ -10,7 +10,7 @@ import type { Rocket } from "../../types/rocket";
 function LaunchDetails() {
   const { id } = useParams();
   const navigate = useNavigate()
-  
+  const [error, setError] = useState("");
   const [launch, setLaunch] = useState<LaunchDetail | null>(null);
   const [rocket, setRocket] = useState<Rocket | null>(null);
   const [loading, setLoading] = useState(true);
@@ -29,6 +29,7 @@ function LaunchDetails() {
         setRocket(rocketData);
       } catch (error) {
         console.error("Error fetching launch details:", error);
+        setError("Failed to fetch launch details");
       } finally {
         setLoading(false);
       }
@@ -38,6 +39,7 @@ function LaunchDetails() {
   }, [id]);
   
   if (loading) return <LoadingSpinner />;
+  if (error) return <p>{error}</p>;
   
   return (
     <div>
