@@ -3,6 +3,7 @@ Run the project:
 In terminal: 
 
 npm install
+
 npm run dev
 
 
