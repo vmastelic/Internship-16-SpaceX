@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../components/NavBar/NavBar";
 import { getCompanySummary } from "../../api/company";
-import LoadingSpinner from "../../components/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 function Home(){
 
