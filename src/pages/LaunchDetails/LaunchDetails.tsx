@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { getLaunchById } from "../../api/launches";
@@ -9,6 +9,7 @@ import type { Rocket } from "../../types/rocket";
 
 function LaunchDetails() {
   const { id } = useParams();
+  const navigate = useNavigate()
   
   const [launch, setLaunch] = useState<LaunchDetail | null>(null);
   const [rocket, setRocket] = useState<Rocket | null>(null);
@@ -41,7 +42,7 @@ function LaunchDetails() {
   return (
     <div>
       <NavBar />
-
+      <button onClick={() => navigate(-1)}>Back</button>
       <h1>{launch?.name}</h1>
 
       {launch?.links.patch.large && (

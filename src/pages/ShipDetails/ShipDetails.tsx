@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { getShipById } from "../../api/ships";
@@ -10,6 +10,8 @@ function ShipDetails() {
     const [ship, setShip] = useState<ShipDetail | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
+    
     
     useEffect(() => {
         const fetchShip = async () => {
@@ -38,7 +40,7 @@ function ShipDetails() {
     return (
         <div>
       <NavBar />
-
+      <button onClick={() => navigate(-1)}>Back</button>
       <h1>{ship?.name}</h1>
 
       {ship?.image ? (
