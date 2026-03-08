@@ -12,3 +12,9 @@
 .paging{
     margin-bottom: 20px;
 }
+
+.launchLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}

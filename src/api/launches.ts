@@ -53,3 +53,13 @@ export const getLaunches = async ({ page, search, filter }: GetLaunchesParams): 
 
     return response.json();
 };
+
+export const getLaunchById = async (id: string) => {
+    const response = await fetch(`https://api.spacexdata.com/v4/launches/${id}`);
+    
+    if (!response.ok) {
+      throw new Error("Failed to fetch launch details");
+    }
+    
+    return response.json();
+};
