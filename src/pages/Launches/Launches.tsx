@@ -14,8 +14,9 @@ function Launches() {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get("search") || "";
+    const filter = (searchParams.get("filter") as "all" | "success" | "failed" | "upcoming") || "all";
     
-    const { data, loading } = useLaunches(page, search);
+    const { data, loading } = useLaunches(page, search, filter);
 
       const updateParam = (key: string, value: string) => {
           const params = new URLSearchParams(searchParams);
@@ -27,6 +28,7 @@ function Launches() {
       
           if (key !== "page") {
             params.set("page", "1");
+            setPage(1);
           }
           
           setSearchParams(params);
@@ -43,6 +45,13 @@ function Launches() {
             value={search}
             onChange={(e) => updateParam("search", e.target.value)}
           />
+          <select value={filter} onChange={(e) => updateParam("filter", e.target.value)}>
+            <option value="all">All</option>
+            <option value="success">Success</option>
+            <option value="failed">Failed</option>
+            <option value="upcoming">Upcoming</option>
+          </select>
+
           <LaunchListWithLoading
             loading={loading && !data}
             launches={data?.docs || []}

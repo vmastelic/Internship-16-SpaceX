@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getLaunches } from "../api/launches";
+import { getLaunches, type LaunchFilter } from "../api/launches";
 import type { LaunchesResponse } from "../types/launch";
 
-export function useLaunches(page: number, search: string) {
+export function useLaunches(page: number, search: string, filter: LaunchFilter) {
   const [data, setData] = useState<LaunchesResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -13,7 +13,7 @@ export function useLaunches(page: number, search: string) {
         setLoading(true);
         setError("");
 
-        const result = await getLaunches({ page, search });
+        const result = await getLaunches({ page, search, filter });
         setData(result);
       } catch (error) {
         setError("Failed to fetch launches");
@@ -24,7 +24,7 @@ export function useLaunches(page: number, search: string) {
     };
 
     fetchLaunches();
-  }, [page, search]);
+  }, [page, search, filter]);
 
   return { data, loading, error };
 }

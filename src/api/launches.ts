@@ -1,10 +1,14 @@
 import type { LaunchesResponse } from "../types/launch";
+
+export type LaunchFilter = "all" | "success" | "failed" | "upcoming";
+
 type GetLaunchesParams = {
-  page: number;
-  search: string;
+    page: number;
+    search: string;
+    filter: LaunchFilter;
 };
 
-export const getLaunches = async ({ page, search }: GetLaunchesParams): Promise<LaunchesResponse> => {
+export const getLaunches = async ({ page, search, filter }: GetLaunchesParams): Promise<LaunchesResponse> => {
 
     const query: Record<string, unknown> = {};    
     if (search.trim()) {
@@ -12,6 +16,18 @@ export const getLaunches = async ({ page, search }: GetLaunchesParams): Promise<
         $regex: search,
         $options: "i",
       };
+    }
+
+    if (filter === "success") {
+        query.success = true;
+    }
+
+    if (filter === "failed") {
+        query.success = false;
+    }
+
+    if (filter === "upcoming") {
+        query.upcoming = true;
     }
 
     const response = await fetch('https://api.spacexdata.com/v4/launches/query', {
