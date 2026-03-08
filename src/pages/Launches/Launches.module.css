@@ -1,18 +1,22 @@
 .page {
-  padding: 50px 24px 32px;
-  max-width: 1200px;
-  margin: 0 auto;
+    padding: 10px 24px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: calc(100vh - 0px);
+    box-sizing: border-box;
 }
 
-.launch{
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    padding-left: 10px;
+.launch {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+  background: var(--card);
+  color: var(--card-text);
 }
 
 .paging{

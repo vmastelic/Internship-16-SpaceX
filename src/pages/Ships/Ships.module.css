@@ -6,20 +6,21 @@
 
 .title {
   margin-bottom: 20px;
-  color: white;
+  color: var(--text);
   text-align: center;
   font-size: 3rem;
 }
 
 .input {
   padding: 10px 14px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 10px;
   font-size: 1rem;
-  margin: 0 auto 24px;
+  margin-bottom: 24px;
   width: 100%;
   max-width: 320px;
-  display: block;
+  background: var(--input-bg);
+  color: var(--input-text);
 }
 
 .grid {
@@ -30,7 +31,7 @@
 
 .card {
   text-decoration: none;
-  color: inherit;
+  color: white;
   border: 1px solid #2a2a2a;
   border-radius: 14px;
   overflow: hidden;
@@ -53,7 +54,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eee;
+  background: var(--card);
+  color: var(--card-text);
+  border: 1px solid var(--border);
   color: #555;
 }
 
