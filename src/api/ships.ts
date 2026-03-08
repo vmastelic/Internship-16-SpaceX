@@ -41,3 +41,13 @@ export const getShips = async ({
 
   return response.json();
 };
+
+export const getShipById = async (id: string) => {
+    const response = await fetch(`https://api.spacexdata.com/v4/ships/${id}`);
+    
+    if (!response.ok) {
+        throw new Error("Failed to fetch ship details");
+    }
+    
+    return response.json();
+};
