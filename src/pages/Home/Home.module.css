@@ -1,0 +1,87 @@
+.home {
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.overlay {
+  height: 100%;
+  padding: 100px 24px 32px;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.heroCard {
+  width: 100%;
+  max-width: 900px;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.launchName {
+  font-size: 1.2rem;
+  margin-bottom: 28px;
+  opacity: 0.9;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(90px, 1fr));
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.timeBox {
+  padding: 18px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.timeValue {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.timeLabel {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.summary {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+  .heroCard {
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

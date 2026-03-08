@@ -8,9 +8,16 @@ function NavBar(){
     return(
         <>
          <div className={styles.navbar}>
-            <Link to="/">Home</Link>
-            <Link to="/launches">Launches</Link>
-            <button onClick={toggleTheme}>
+            <Link className={styles.link} to="/">
+              Home
+            </Link>
+            <Link className={styles.link} to="/launches">
+              Launches
+            </Link>
+            <Link className={styles.link} to="/ships">
+              Ships
+            </Link>
+            <button className={styles.button} onClick={toggleTheme}>
               {theme === "light" ? "Dark mode" : "Light mode"}
             </button>
          </div>

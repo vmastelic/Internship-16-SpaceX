@@ -63,3 +63,18 @@ export const getLaunchById = async (id: string) => {
     
     return response.json();
 };
+
+export type NextLaunch = {
+    name: string;
+    date_utc: string;
+};
+
+export const getNextLaunch = async (): Promise<NextLaunch> => {
+    const response = await fetch("https://api.spacexdata.com/v4/launches/next");
+    
+    if (!response.ok) {
+        throw new Error("Failed to fetch next launch");
+    }
+    
+    return response.json();
+};
