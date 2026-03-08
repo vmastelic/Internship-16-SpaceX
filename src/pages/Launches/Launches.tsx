@@ -1,7 +1,6 @@
 import { useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import style from "./Launches.module.css";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useSearchParams } from "react-router-dom";
 import { useLaunches } from "../../hooks/useLaunches";
 import LaunchList from "../../components/LaunchList/LaunchList";
