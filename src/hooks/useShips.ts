@@ -21,6 +21,7 @@ export function useShips(search: string, page: number) {
                 setError("");
                 
                 const result = await getShips({ search, page });
+
                 
                 if (page === 1) {
                     setShips(result.docs);
@@ -39,6 +40,6 @@ export function useShips(search: string, page: number) {
         
         fetchShips();
     }, [search, page]);
-    
+        
     return { ships, loading, error, hasMore };
 }
